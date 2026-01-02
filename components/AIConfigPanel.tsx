@@ -406,9 +406,6 @@ export default function AIConfigPanel({ onConfigComplete }: AIConfigPanelProps) 
                   <div className="text-3xl mb-2">{p.icon}</div>
                   <div className="font-bold text-white mb-1 text-xs">{p.name}</div>
                   <div className="text-xs text-slate-400">{p.description}</div>
-                  {p.free && (
-                    <div className="mt-2 text-xs text-green-400">免费</div>
-                  )}
                 </button>
               ))}
             </div>
