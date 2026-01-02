@@ -78,12 +78,12 @@ async function callDoubaoVideoAPI(
     const baseURL = config.baseURL || "https://ark.cn-beijing.volces.com/api/v3";
     
     const response = await fetch(`${baseURL}/video/generations`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${config.apiKey}`,
-      },
-      body: JSON.stringify({
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${config.apiKey}`,
+        },
+        body: JSON.stringify({
         model: config.model, // 使用endpoint ID
         images: compositionConfig.imageUrls,
         durations: compositionConfig.durations,
@@ -92,7 +92,7 @@ async function callDoubaoVideoAPI(
         aspect_ratio: compositionConfig.aspectRatio,
         fps: config.fps || 30,
         format: compositionConfig.format || "mp4",
-      }),
+        }),
     });
 
     if (!response.ok) {
@@ -145,7 +145,7 @@ export async function generateStoryboardVideo(
       }
       
       result = await callDoubaoVideoAPI(config, compositionConfig);
-      
+  
       // 如果是异步任务，轮询检查状态
       if (result.success && result.taskId) {
         result = await pollVideoGenerationStatus(
@@ -172,8 +172,8 @@ export async function generateStoryboardVideo(
     });
   }
 
-  return result;
-}
+    return result;
+  }
 
 /**
  * 轮询检查视频生成状态（用于异步任务）
@@ -186,7 +186,7 @@ async function pollVideoGenerationStatus(
   const baseURL = config.baseURL || "https://ark.cn-beijing.volces.com/api/v3";
   const maxAttempts = 60; // 最多轮询60次（5分钟）
   let attempts = 0;
-
+  
   while (attempts < maxAttempts) {
     try {
       const response = await fetch(`${baseURL}/video/generations/${taskId}`, {
@@ -224,8 +224,8 @@ async function pollVideoGenerationStatus(
           error: data.error_message || "视频生成失败",
           taskId,
         };
-      }
-
+    }
+    
       // 等待5秒后继续轮询
       await new Promise(resolve => setTimeout(resolve, 5000));
       attempts++;

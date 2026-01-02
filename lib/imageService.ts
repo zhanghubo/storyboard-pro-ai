@@ -3,7 +3,7 @@
  * 支持多个文生图API的统一接口
  */
 
-export type ImageProvider = "doubao-image" | "stable-diffusion" | "dalle3" | "midjourney";
+export type ImageProvider = "doubao-image" | "stable-diffusion" | "dalle3" | "midjourney" | "none";
 
 /**
  * 图像生成配置接口
