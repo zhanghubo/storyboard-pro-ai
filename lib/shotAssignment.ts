@@ -144,7 +144,7 @@ export function assignShotsToGrid(shotCount: number): GridCellInfo[] {
   const gridCells: GridCellInfo[] = [];
 
   structure.forEach((shot, index) => {
-    const { row, col, shotType, role, importance, duration, act } = shot;
+    const { row, col, shotType, role, importance, duration } = shot;
     const totalRows = shotCount === 9 ? 3 : shotCount === 15 ? 3 : 4;
     const totalCols = shotCount === 9 ? 3 : 5;
 
@@ -160,7 +160,6 @@ export function assignShotsToGrid(shotCount: number): GridCellInfo[] {
       importance,
       role,
       duration,
-      act,
     };
 
     gridCells.push(cellInfo);

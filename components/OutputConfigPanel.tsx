@@ -3,7 +3,7 @@
  * 用于选择输出模式和纵横比
  */
 
-import { OutputMode, AspectRatioType, OUTPUT_MODE_OPTIONS, ASPECT_RATIO_OPTIONS } from '../lib/gridConfig'
+import { OutputMode, AspectRatioType, OUTPUT_MODES, ASPECT_RATIOS } from '../lib/gridConfig'
 
 interface OutputConfigPanelProps {
   shotCount: number
@@ -28,7 +28,7 @@ export default function OutputConfigPanel({
           📤 输出模式
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {OUTPUT_MODE_OPTIONS.map((option) => (
+          {OUTPUT_MODES.map((option) => (
             <button
               key={option.id}
               type="button"
@@ -43,13 +43,12 @@ export default function OutputConfigPanel({
                 <div className="text-4xl">{option.icon}</div>
                 <div className="flex-1">
                   <div className="font-bold text-white mb-1">{option.name}</div>
-                  <div className="text-sm text-slate-300 mb-2">{option.description}</div>
-                  <div className="text-xs text-slate-400">{option.detail}</div>
+                  <div className="text-sm text-slate-300">{option.description}</div>
                 </div>
               </div>
               
               {/* 模式说明 */}
-              {option.id === 'individual' && (
+              {option.id === 'single' && (
                 <div className="mt-3 pt-3 border-t border-slate-700">
                   <div className="text-xs text-purple-300">
                     ✓ 生成{shotCount}个独立图片文件<br/>
@@ -79,7 +78,7 @@ export default function OutputConfigPanel({
           📐 画面比例
         </label>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {ASPECT_RATIO_OPTIONS.map((option) => (
+          {ASPECT_RATIOS.map((option) => (
             <button
               key={option.id}
               type="button"
@@ -94,9 +93,8 @@ export default function OutputConfigPanel({
                 <div className="text-4xl">{option.icon}</div>
                 <div className="flex-1">
                   <div className="font-bold text-white mb-1">{option.name}</div>
-                  <div className="text-sm text-slate-300 mb-2">{option.description}</div>
-                  <div className="text-xs text-slate-400">
-                    分辨率: {option.dimensions}
+                  <div className="text-sm text-slate-300">
+                    分辨率: {option.width} × {option.height}
                   </div>
                 </div>
               </div>
@@ -124,7 +122,7 @@ export default function OutputConfigPanel({
         <div className="text-sm text-slate-300 space-y-1">
           <p>
             • <span className="text-purple-300">输出模式:</span>{' '}
-            {selectedOutputMode === 'individual' 
+            {selectedOutputMode === 'single' 
               ? `连续${shotCount}张单图` 
               : `${shotCount}张拼接成1张大图`}
           </p>

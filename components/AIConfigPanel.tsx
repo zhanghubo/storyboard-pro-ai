@@ -20,7 +20,7 @@ export default function AIConfigPanel({ onConfigComplete }: AIConfigPanelProps) 
   const [connectionStatus, setConnectionStatus] = useState<'idle' | 'testing' | 'success' | 'error'>('idle')
   
   // AI绘画配置
-  const [imageProvider, setImageProvider] = useState<ImageProvider>('none')
+  const [imageProvider, setImageProvider] = useState<ImageProvider | 'none'>('none')
   const [imageApiKey, setImageApiKey] = useState('')
   const [imageModel, setImageModel] = useState('dall-e-3')
   const [imageBaseURL, setImageBaseURL] = useState('')
@@ -429,7 +429,7 @@ export default function AIConfigPanel({ onConfigComplete }: AIConfigPanelProps) 
                     }}
                     className="input-field flex-1"
                     placeholder="请输入绘画API密钥"
-                    required={imageProvider !== 'none'}
+                    required
                   />
                   <button
                     type="button"
@@ -446,23 +446,21 @@ export default function AIConfigPanel({ onConfigComplete }: AIConfigPanelProps) 
               </div>
 
               {/* 自定义Base URL（可选） */}
-              {imageProvider !== 'stabilityai' && (
-                <div>
-                  <label className="block text-white font-semibold mb-2">
-                    自定义绘画API地址（可选）
-                  </label>
-                  <input
-                    type="url"
-                    value={imageBaseURL}
-                    onChange={(e) => {
-                      setImageBaseURL(e.target.value)
-                      setImageConnectionStatus('idle')
-                    }}
-                    className="input-field"
-                    placeholder="https://api.example.com/v1"
-                  />
-                </div>
-              )}
+              <div>
+                <label className="block text-white font-semibold mb-2">
+                  自定义绘画API地址（可选）
+                </label>
+                <input
+                  type="url"
+                  value={imageBaseURL}
+                  onChange={(e) => {
+                    setImageBaseURL(e.target.value)
+                    setImageConnectionStatus('idle')
+                  }}
+                  className="input-field"
+                  placeholder="https://api.example.com/v1"
+                />
+              </div>
             </>
           )}
 

@@ -133,7 +133,7 @@ export function getOutputMetadata(config: OutputConfig) {
  * @returns 是否有效
  */
 export function validateOutputConfig(config: OutputConfig): boolean {
-  const validModes: OutputMode[] = ["single", "combined"];
+  const validModes: OutputMode[] = ["single", "grid"];
   const validRatios: AspectRatio[] = ["16:9", "9:16"];
   const validShotCounts = [9, 15, 20];
 

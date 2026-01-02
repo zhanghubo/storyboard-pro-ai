@@ -63,9 +63,6 @@ export default function OutputModeSelector({ shotCount, onConfirm, onBack }: Out
                 
                 {/* 描述 */}
                 <p className="text-slate-300 mb-3">{mode.description}</p>
-                
-                {/* 详情 */}
-                <p className="text-sm text-slate-400">{mode.details}</p>
 
                 {/* 选中标记 */}
                 {selectedMode === mode.id && (
@@ -101,14 +98,11 @@ export default function OutputModeSelector({ shotCount, onConfirm, onBack }: Out
                   {ratio.name}
                 </h4>
                 
-                {/* 描述 */}
-                <p className="text-slate-300 mb-2">{ratio.description}</p>
-                
                 {/* 尺寸 */}
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-slate-300">
                   {selectedMode === 'single' 
-                    ? `单图尺寸: ${ratio.dimensions}`
-                    : `合并图尺寸: ${ratio.dimensions}`
+                    ? `单图尺寸: ${ratio.width} × ${ratio.height}`
+                    : `合并图尺寸: ${ratio.width} × ${ratio.height}`
                   }
                 </p>
 
@@ -132,7 +126,7 @@ export default function OutputModeSelector({ shotCount, onConfirm, onBack }: Out
               <h4 className="text-white font-bold mb-2">输出预览</h4>
               <p className="text-slate-200 text-lg">{description}</p>
               
-              {selectedMode === 'combined' && (
+              {selectedMode === 'grid' && (
                 <div className="mt-4 flex items-center space-x-4">
                   <div className="text-sm text-slate-300">
                     <span className="font-semibold">网格布局：</span>
